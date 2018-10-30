@@ -23,7 +23,7 @@ class SessionsController extends Controller
         if (Auth::attempt($credentials,$request->has('remeber'))){
             //登陆ok
             session()->flash('success', '欢迎回来！');
-           return redirect()->route('users.show', [Auth::user()]);
+           return redirect()->intended(route('users.show', [Auth::user()]));
         }else{
             //登陆失败
              session()->flash('danger', '很抱歉，您的邮箱和密码不匹配');
@@ -39,5 +39,13 @@ class SessionsController extends Controller
         Auth::logout();
         session()->flash('success','您已成功退出！');
         return redirect('login');
+    }
+
+    public function __construct()
+    {
+        # code...
+        $this->middleware('guest',[
+            'only' => ['create']
+        ]);
     }
 }
