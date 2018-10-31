@@ -27,6 +27,17 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public static function boot()
+    {
+        # code...
+        parent::boot();
+
+        static::creating(function ($user){
+            # code...
+            $user->activation_token = str_random(30);
+        });
+    }
+
     public function gravatar($size = '100')
     {
         # code...
