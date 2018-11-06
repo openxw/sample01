@@ -51,18 +51,27 @@ class User extends Authenticatable
         $this->notify(new ResetPassword($token));
     }
 
+<<<<<<< HEAD
     public function statuses()
+=======
+    public function stutases()
+>>>>>>> user-statuses
     {
         # code...
         return $this->hasMany(Status::class);
     }
 
+<<<<<<< HEAD
     public function feed()
     {
         # code...
         return $this->statuses()
                         ->orderBy('created_at','desc');
     }
+=======
+
+
+>>>>>>> user-statuses
 
 }
 
